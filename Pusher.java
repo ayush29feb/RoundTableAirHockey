@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.lang.Math;
 
 public class Pusher {
 	public static final int WIDTH = 50, HEIGHT = 50;
@@ -23,7 +24,13 @@ public class Pusher {
 		this.y = y;
 	}
 
+	public double getX(){
+		return this.x;
+	}
 
+	public double getY(){
+		return this.y;
+	}
 }
 
 class Player extends Pusher {
@@ -32,10 +39,19 @@ class Player extends Pusher {
 		super(space);
 	}
 
-	public void update(){
+	public void update() {
 		setX(super.space.curX);
 		setY(super.space.curY);
 	}
+}
 
+class Bot extends Pusher {
 
+	public Bot(Space space){
+		super(space);
+	}
+
+	public void update() {
+		
+	}
 }

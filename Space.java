@@ -42,6 +42,7 @@ public class Space extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         puck.update();
         player.update();
+        puck.checkCollisions(player);
         repaint();
     }
 
