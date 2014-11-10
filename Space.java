@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Space extends JPanel implements ActionListener {
-    Timer t = new Timer(50, this);
+    Timer t = new Timer(10, this);
     int gridVars[] = {350, 350, 5, 50}; // [0]OriginX(PointX), [1]OriginY(PointY), [2]OneUnitBox(cm), [3]OneUnitBoxSize(px)
     double curX=0,curY=0;
 
@@ -17,6 +17,9 @@ public class Space extends JPanel implements ActionListener {
     boolean grid = true;
     //Contains All the Option Facilities
     Options options = new Options();
+
+    //Game Objects
+    Puck puck = new Puck(this, 5, -25);
 
     public Space() {
         activateListeners();
@@ -28,11 +31,14 @@ public class Space extends JPanel implements ActionListener {
         if(grid){
 	       drawGrids(g);
 	    }
-        t.start(); // Updates The Graph
+        drawTable(g);
+        puck.draw(g);
+        t.start();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        puck.update();
         repaint();
     }
 
@@ -99,7 +105,6 @@ public class Space extends JPanel implements ActionListener {
         g.drawString("0", this.gridVars[0] + 5, this.gridVars[1] + 20);
         g.drawString("UnitBoxSize:" + this.gridVars[2], this.getWidth() - 100, 30);
         g.drawString("X:" + this.curX + "Y:" + this.curY, 5, 30);
-        drawTable(g);
     }
     
     
