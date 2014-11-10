@@ -10,7 +10,7 @@ import javax.swing.Timer;
 
 public class Space extends JPanel implements ActionListener {
     Timer t = new Timer(50, this);
-    int gridVars[] = {400, 350, 5, 50}; // [0]OriginX(PointX), [1]OriginY(PointY), [2]OneUnitBox(cm), [3]OneUnitBoxSize(px)
+    int gridVars[] = {350, 350, 5, 50}; // [0]OriginX(PointX), [1]OriginY(PointY), [2]OneUnitBox(cm), [3]OneUnitBoxSize(px)
     double curX=0,curY=0;
 
     //Visibilities
@@ -26,8 +26,8 @@ public class Space extends JPanel implements ActionListener {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         if(grid){
-	    drawGrids(g);
-	}
+	       drawGrids(g);
+	    }
         t.start(); // Updates The Graph
     }
 
@@ -36,12 +36,17 @@ public class Space extends JPanel implements ActionListener {
         repaint();
     }
 
-    public static void main(String args[]){
+    public void drawTable(Graphics g) {
+        g.setColor(Color.RED);
+        g.drawOval(getGridX(-30) , getGridY(30), (getGridX(30) - getGridX(-30)), (getGridY(-30) - getGridY(30)));
+    }
+
+    public static void main(String args[]) {
         JFrame jf = new JFrame();
         Space m = new Space();
 
-	    m.setSize(800, 800);
-        jf.setSize(800, 800);
+	    m.setSize(700, 700);
+        jf.setSize(700, 700);
         jf.setVisible(true);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.add(m);
@@ -54,7 +59,6 @@ public class Space extends JPanel implements ActionListener {
         
         this.setFocusable(true);
         this.addKeyListener(new KeyFunctions(this));
-        
     }
     
    
@@ -95,16 +99,17 @@ public class Space extends JPanel implements ActionListener {
         g.drawString("0", this.gridVars[0] + 5, this.gridVars[1] + 20);
         g.drawString("UnitBoxSize:" + this.gridVars[2], this.getWidth() - 100, 30);
         g.drawString("X:" + this.curX + "Y:" + this.curY, 5, 30);
+        drawTable(g);
     }
     
     
     public int getGridX(double x){
-        int x1 = (int) (this.gridVars[0] + (x * this.gridVars[3])/this.gridVars[2]);
+        int x1 = (int) (this.gridVars[0] + (x * this.gridVars[3]) / this.gridVars[2]);
         return x1;
     }
     
     public int getGridY(double y){
-        int y1 = (int) (this.gridVars[1] - (y * this.gridVars[3])/this.gridVars[2]);
+        int y1 = (int) (this.gridVars[1] - (y * this.gridVars[3]) / this.gridVars[2]);
         return y1;
     }
     
