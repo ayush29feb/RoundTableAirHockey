@@ -11,7 +11,7 @@ import javax.swing.Timer;
 public class Space extends JPanel implements ActionListener {
     Timer t = new Timer(10, this);
     int gridVars[] = {350, 350, 5, 50}; // [0]OriginX(PointX), [1]OriginY(PointY), [2]OneUnitBox(cm), [3]OneUnitBoxSize(px)
-    double curX=0,curY=0;
+    double curX = 0,curY = 0;
 
     //Visibilities
     boolean grid = true;
@@ -20,6 +20,7 @@ public class Space extends JPanel implements ActionListener {
 
     //Game Objects
     Puck puck = new Puck(this, 5, -25);
+    Player player = new Player(this);
 
     public Space() {
         activateListeners();
@@ -33,12 +34,14 @@ public class Space extends JPanel implements ActionListener {
 	    }
         drawTable(g);
         puck.draw(g);
+        player.draw(g);
         t.start();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         puck.update();
+        player.update();
         repaint();
     }
 

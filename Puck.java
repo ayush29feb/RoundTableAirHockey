@@ -1,7 +1,7 @@
 import java.awt.*;
 
 public class Puck {
-	public static final int width = 50, heigth = 50;
+	public static final int WIDTH = 50, HEIGTH = 50;
 	private double x = 0, y = -20;
 	private double velX = 50, velY = 50;
 	private Space space;
@@ -14,7 +14,7 @@ public class Puck {
 
 	public void draw(Graphics g){
 		g.setColor(Color.BLUE);
-		g.fillOval(space.getGridX(x) - width / 2, space.getGridY(y) - heigth / 2, width, heigth);
+		g.fillOval(space.getGridX(x) - WIDTH / 2, space.getGridY(y) - HEIGTH / 2, WIDTH, HEIGTH);
 	}
 
 	public void update(){
